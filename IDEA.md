@@ -255,6 +255,13 @@ Infrastructure implements it via OpenRouter.
 
 # 6. CLI Design
 
+## Command Surface Philosophy
+
+Commands are intentionally composable and mode-driven rather than fragmented.
+Flags activate reasoning engines, personas, and discipline layers instead of creating separate tools.
+
+---
+
 ## Basic Prompt
 
 ```
@@ -305,18 +312,29 @@ Pipeline:
 
 ---
 
-## Prompt Scoring
+## Prompt Scoring & Audit
 
 ```
 cforge score prompt.txt
 ```
 
-Scores:
+Or stricter audit mode:
+
+```
+cforge audit prompt.txt --critic
+```
+
+Scores and evaluates:
 
 * Clarity
 * Constraint definition
 * Outcome specificity
 * Hallucination risk
+* Structural completeness (RCCF compliance)
+
+`audit` is a stricter wrapper around scoring + critique.
+
+---
 
 ---
 
@@ -333,6 +351,67 @@ Features:
 * Learning mode toggle
 * Harsh mode toggle
 * File injection
+* Persona switching
+
+---
+
+## Learning Command
+
+```
+cforge learn topic --7min
+```
+
+Time-boxed learning mode.
+
+Engine behavior:
+
+* Structured explanation
+* Key principles first
+* Minimal fluff
+* Transferable mental models
+
+---
+
+## Master Prompt System
+
+Create reusable structured prompts:
+
+```
+cforge master create
+```
+
+Stores prompts in versioned template registry.
+
+---
+
+## Project-Based Mode
+
+```
+cforge use donna-ai --task dev
+```
+
+Activates project-scoped knowledge gardening.
+
+* Loads project memory
+* Applies dev-focused reasoning
+* Tracks decisions & assumptions
+
+---
+
+## Context Compression (Folder-Level)
+
+```
+cforge compress project-folder/
+```
+
+Produces structured abstraction:
+
+* Architecture summary
+* Core modules
+* Risks
+* Open questions
+
+---
 
 ---
 
@@ -346,7 +425,53 @@ Supports automatic compression when context is large.
 
 ---
 
-# 7. Core Systems
+# 7. System Prompts & Persona Modes
+
+System prompts stored in:
+
+```
+/system-prompts/
+```
+
+Modes include:
+
+* Strict CTO Mode
+* Harsh VC Mode
+* Philosopher Mode
+* Devil’s Advocate Mode
+* First Principles Engineer Mode
+
+CLI activation examples:
+
+```
+cforge run idea.md --system harsh-vc
+cforge run spec.md --system strict-cto
+```
+
+Flags can also compose discipline layers:
+
+* `--critic`
+* `--devils-advocate`
+* `--first-principles`
+
+---
+
+## Taste Curation & Output Constraints
+
+Output shaping flags:
+
+* `--grade-level 9`
+* `--max-words 100`
+* `--tone persuasive`
+* `--critic`
+* `--devils-advocate`
+* `--first-principles`
+
+These apply post-generation filtering and re-structuring via Taste Engine.
+
+---
+
+# 8. Core Systems
 
 ## 7.1 Harsh Feedback Engine
 
@@ -519,7 +644,25 @@ Avoid premature complexity.
 
 ---
 
-# 12. Long-Term Direction
+# 12. Packaging & Distribution
+
+Initial binary:
+
+```
+cforge
+```
+
+Future NPM scoped package (if ecosystem evolves that direction):
+
+```
+@cognitive-forge/cli
+```
+
+This aligns with long-term SDK and plugin architecture.
+
+---
+
+# 13. Long-Term Direction
 
 Cognitive Forge becomes:
 
