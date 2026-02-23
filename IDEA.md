@@ -118,14 +118,47 @@ No OpenRouter. No filesystem. No side effects.
 * Learning Mode Engine
 * Knowledge Gardening Model
 
-### RCCF
+### RCCF — Dual Framework
 
-Formalizes disciplined reasoning:
+RCCF operates on two complementary levels:
 
-1. Reflect — understand intent and constraints
-2. Critique — identify weaknesses and risks
-3. Construct — build improved solution
-4. Finalize — produce structured output
+## Level 1 — Prompt Structure (Role, Context, Command, Format)
+
+This is the external prompting discipline.
+
+* **Role** — Who the model is acting as (expertise, perspective, constraints)
+* **Context** — Relevant background, data, files, assumptions
+* **Command** — Clear, unambiguous instruction
+* **Format** — Strict output structure specification
+
+This ensures inputs to the engine are structured and unambiguous.
+
+---
+
+## Level 2 — Reasoning Discipline (Reflect → Critique → Construct → Finalize)
+
+This is the internal reasoning cycle applied after prompt structuring.
+
+1. **Reflect** — Understand intent, constraints, edge cases
+2. **Critique** — Identify weaknesses, risks, blind spots
+3. **Construct** — Build improved, structured solution
+4. **Finalize** — Produce clean, contract-respecting output
+
+---
+
+### How Both Layers Interact
+
+External Discipline (Role/Context/Command/Format)
+→ Internal Discipline (Reflect/Critique/Construct/Finalize)
+→ Scoring & Iteration
+→ Final Output
+
+The first prevents ambiguous prompts.
+The second prevents shallow reasoning.
+
+Together they form the Cognitive Forge reasoning contract.
+
+---
 
 ### Structured Analyzer
 
