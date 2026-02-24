@@ -676,6 +676,14 @@ The Open-Core/Infrastructure-as-Open-Source Strategy:
 Cognitive Forge = The foundational, open-source cognitive infrastructure. Open to the community to drive adoption, establish reasoning standards, and build trust.
 Donna AI = The closed-source, proprietary application layer. A commercial SaaS product that monetizes the cognitive infrastructure through advanced personal and business assistant workflows.
 
+## 14.1 cforge-dev: The Autonomous SDLC Guardian
+While Cognitive Forge provides the underlying reasoning infrastructure, `cforge-dev` will serve as the application layer that enforces software development best practices.
+
+Rather than just generating code, `cforge-dev` will utilize the engine to act as a continuous repository auditor:
+* **Continuous Governance:** Automatically auditing, generating, and updating foundational repository files (`README.md`, `CONTRIBUTING.md`, `CHANGELOG.md`, `LICENSE`).
+* **Governance Contracts:** Best practices (like Conventional Commits, Git flow, and folder structures) are defined in Markdown-based "Contracts" that the reasoning engine evaluates the current workspace against.
+* **Proactive Maintenance:** Identifying "documentation rot" (e.g., when a new feature is committed but the README is not updated) and automatically proposing the fix via the RCCF loop.
+
 ---
 
 # 15. Non-Goals (Initial Versions)
