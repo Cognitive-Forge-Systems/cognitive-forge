@@ -67,6 +67,7 @@ cforge-dev enforces:
 * Test-before-implementation
 * Structured sprint cycles
 * Release discipline
+* Continuous Repository Governance (preventing documentation and architecture rot)
 
 It transforms AI coding from improvisation into process-driven engineering.
 
@@ -296,6 +297,18 @@ cforge-dev release
 
 ---
 
+## Audit (Continuous Governance)
+
+```
+cforge-dev audit
+```
+Acts as the autonomous SDLC Guardian:
+
+* Scans the workspace against markdown-based "Governance Contracts" (e.g., repo-standard.md).
+* Detects documentation rot (e.g., features merged without updating the README.md or CHANGELOG.md).
+* Checks for compliance with architectural boundaries and Conventional Commits.
+* Uses the underlying cforge reasoning engine to automatically propose and commit fixes.
+
 # 12. Context Discipline Engine
 
 Context is constructed intentionally:
@@ -316,7 +329,21 @@ Context compression via cforge ensures minimal, focused injection.
 
 ---
 
-# 13. AI Control Model
+# 13. Governance Contracts & Continuous Auditing
+
+cforge-dev doesn't rely on hardcoded rules for repository health. Instead, it relies on **Governance Contracts**—simple markdown files stored in a `/contracts/` directory.
+
+These contracts define:
+* Folder structures
+* Required documentation (README, CONTRIBUTING, LICENSE)
+* Commit formatting (Conventional Commits)
+* Code style constraints
+
+When `cforge-dev audit` is run (or triggered in a CI/CD pipeline), it loads these contracts, inspects the filesystem and git history, and utilizes the `cforge` reasoning engine to critique discrepancies and generate the missing compliance artifacts.
+
+---
+
+# 14. AI Control Model
 
 AI is not autonomous.
 AI operates within strict guardrails:
@@ -330,7 +357,7 @@ Human remains final reviewer.
 
 ---
 
-# 14. Phased Development Roadmap
+# 15. Phased Development Roadmap
 
 ## Phase 1 — Foundation
 
@@ -363,7 +390,7 @@ Human remains final reviewer.
 
 ---
 
-# 15. Parallel Execution (Future)
+# 16. Parallel Execution (Future)
 
 Multiple issues executed concurrently:
 
@@ -375,7 +402,7 @@ Requires dependency awareness to prevent conflicts.
 
 ---
 
-# 16. Preventing Architectural Regret
+# 17. Preventing Architectural Regret
 
 cforge-dev prevents:
 
@@ -388,7 +415,7 @@ It forces explicit architecture before velocity.
 
 ---
 
-# 17. Identity Statement
+# 18. Identity Statement
 
 Cognitive Forge Dev is:
 
