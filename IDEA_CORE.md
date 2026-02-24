@@ -473,7 +473,7 @@ These apply post-generation filtering and re-structuring via Taste Engine.
 
 # 8. Core Systems
 
-## 7.1 Harsh Feedback Engine
+## 8.1 Harsh Feedback Engine
 
 Prevents:
 
@@ -489,7 +489,7 @@ Forces:
 
 ---
 
-## 7.2 Taste Curation Engine
+## 8.2 Taste Curation Engine
 
 Filters output through:
 
@@ -502,7 +502,7 @@ Goal: High signal-to-noise ratio.
 
 ---
 
-## 7.3 Master Prompt System
+## 8.3 Master Prompt System
 
 Centralized, versioned prompt templates for:
 
@@ -516,13 +516,13 @@ All prompts version-controlled.
 
 ---
 
-## 7.4 Output Iteration Engine
+## 8.4 Output Iteration Engine
 
 Multi-pass generation with scoring and comparison.
 
 ---
 
-## 7.5 Context Compression System
+## 8.5 Context Compression System
 
 Handles:
 
@@ -539,7 +539,7 @@ Techniques:
 
 ---
 
-## 7.6 Project-Based Knowledge Gardening
+## 8.6 Project-Based Knowledge Gardening
 
 Stores structured insights:
 
@@ -557,7 +557,7 @@ cforge garden sync
 
 ---
 
-## 7.7 Learning Mode
+## 8.7 Learning Mode
 
 When enabled:
 
@@ -568,7 +568,7 @@ When enabled:
 
 ---
 
-# 8. Skill Engine
+# 9. Skill Engine
 
 Cognitive Forge develops:
 
@@ -582,7 +582,7 @@ It trains thinking, not just text generation.
 
 ---
 
-# 9. TDD & Clean Code Principles
+# 10. TDD & Clean Code Principles
 
 * Domain-first implementation
 * Tests before infrastructure
@@ -593,7 +593,7 @@ It trains thinking, not just text generation.
 
 ---
 
-# 10. Roadmap
+# 11. Roadmap
 
 ## v0.1 — Minimal Core
 
@@ -632,7 +632,7 @@ It trains thinking, not just text generation.
 
 ---
 
-# 11. Phased Scope
+# 12. Phased Scope
 
 Phase 1: Minimal Reasoning CLI
 Phase 2: Iterative Intelligence
@@ -644,7 +644,7 @@ Avoid premature complexity.
 
 ---
 
-# 12. Packaging & Distribution
+# 13. Packaging & Distribution
 
 Initial binary:
 
@@ -662,7 +662,7 @@ This aligns with long-term SDK and plugin architecture.
 
 ---
 
-# 13. Long-Term Direction
+# 14. Long-Term Direction
 
 Cognitive Forge becomes:
 
@@ -678,7 +678,7 @@ Donna AI = The closed-source, proprietary application layer. A commercial SaaS p
 
 ---
 
-# 14. Non-Goals (Initial Versions)
+# 15. Non-Goals (Initial Versions)
 
 * Web UI
 * Multi-agent orchestration
@@ -688,7 +688,7 @@ Donna AI = The closed-source, proprietary application layer. A commercial SaaS p
 
 ---
 
-# 15. Identity Statement
+# 16. Identity Statement
 
 Cognitive Forge is:
 
