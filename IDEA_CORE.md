@@ -10,7 +10,7 @@
 
 ## What Cognitive Forge Is
 
-Cognitive Forge is a **portable reasoning engine** that exposes a CLI interface for disciplined, structured thinking using LLMs.
+Cognitive Forge is a **portable, open-source reasoning engine** that exposes a CLI interface for disciplined, structured thinking using LLMs.
 
 It is not:
 
@@ -671,12 +671,14 @@ Cognitive Forge becomes:
 * Foundation for cforge-dev
 * Infrastructure backbone for Donna AI
 
-Donna AI = Application layer
-Cognitive Forge = Cognitive infrastructure
+The Open-Core/Infrastructure-as-Open-Source Strategy:
+
+Cognitive Forge = The foundational, open-source cognitive infrastructure. Open to the community to drive adoption, establish reasoning standards, and build trust.
+Donna AI = The closed-source, proprietary application layer. A commercial SaaS product that monetizes the cognitive infrastructure through advanced personal and business assistant workflows.
 
 ---
 
-# 13. Non-Goals (Initial Versions)
+# 14. Non-Goals (Initial Versions)
 
 * Web UI
 * Multi-agent orchestration
@@ -686,7 +688,7 @@ Cognitive Forge = Cognitive infrastructure
 
 ---
 
-# 14. Identity Statement
+# 15. Identity Statement
 
 Cognitive Forge is:
 
