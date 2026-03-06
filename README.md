@@ -32,12 +32,20 @@ Compresses large content into a structured abstraction: summary, architecture, c
 cforge compress docs/architecture.md
 ```
 
+### `cforge critique <file>`
+
+Harsh feedback engine — no flattery, no mercy. Produces counter-arguments, logical gaps, risk exposure, ego biases, and a blunt verdict.
+
+```
+cforge critique pitch.md
+```
+
 ## Architecture
 
 Clean/Onion Architecture — 4 layers:
 
 - **Domain** — Pure logic, models, interfaces. Zero external dependencies.
-- **Application** — Use cases (StructuredAnalyzer, IterationEngine, ContextCompressor).
+- **Application** — Use cases (StructuredAnalyzer, IterationEngine, ContextCompressor, HarshFeedbackEngine).
 - **Infrastructure** — OpenRouterClient (implements LLMClient interface via native fetch).
 - **CLI** — Argument parsing and output formatting. No business logic.
 
@@ -54,15 +62,16 @@ node dist/cli/index.js analyze <file>
 
 ## Auto-compression
 
-`analyze` and `iterate` automatically compress inputs exceeding 2000 words before processing. A notice is printed when compression is triggered.
+`analyze`, `iterate`, and `critique` automatically compress inputs exceeding 2000 words before processing. A notice is printed when compression is triggered.
 
 ## Roadmap
 
-- v0.1 — Scaffold + StructuredAnalyzer + CLI
-- v0.2 — Iteration Engine (RCCF loop)
-- v0.3 — Context Compression
-- v0.4 — Harsh Feedback Engine + Taste Curation
-- v0.5 — Learning Mode + Knowledge Gardening
+- v0.1 ✅ — Scaffold + StructuredAnalyzer + CLI
+- v0.2 ✅ — Iteration Engine (RCCF loop)
+- v0.3 ✅ — Context Compression
+- v0.4 ✅ — Harsh Feedback Engine + `cforge critique`
+- v0.5 — Taste Curation + Learning Mode
+- v0.6 — Knowledge Gardening
 - v1.0 — Plugin system + API + SDK
 
 ## License
