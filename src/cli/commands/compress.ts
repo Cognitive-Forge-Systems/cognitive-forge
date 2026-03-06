@@ -1,8 +1,8 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { OpenRouterClient } from "../../infrastructure/llm/OpenRouterClient";
-import { StructuredAnalyzer } from "../../application/use-cases/StructuredAnalyzer";
-import { StructuredAnalysis } from "../../domain/models/StructuredAnalysis";
+import { ContextCompressor } from "../../application/use-cases/ContextCompressor";
+import { CompressedContext } from "../../domain/models/CompressedContext";
 
 function formatSection(label: string, content: string | string[]): string {
   const line = "─".repeat(label.length);
@@ -19,21 +19,17 @@ function formatSection(label: string, content: string | string[]): string {
   return `  ${label}\n  ${line}\n${body}`;
 }
 
-function formatAnalysis(analysis: StructuredAnalysis): string {
-  const sections = [
-    formatSection("INTENT", analysis.intent),
-    formatSection("CONSTRAINTS", analysis.constraints),
-    formatSection("ASSUMPTIONS", analysis.assumptions),
-    formatSection("RISKS", analysis.risks),
-    formatSection("OPTIONS", analysis.options),
-    formatSection("DECISION LOGIC", analysis.decisionLogic),
-    formatSection("OUTPUT", analysis.output),
-  ];
-
-  return "\n" + sections.join("\n\n") + "\n";
+function formatCompressed(ctx: CompressedContext): string {
+  return [
+    formatSection("SUMMARY", ctx.summary),
+    formatSection("ARCHITECTURE", ctx.architecture),
+    formatSection("CORE MODULES", ctx.coreModules),
+    formatSection("RISKS", ctx.risks),
+    formatSection("OPEN QUESTIONS", ctx.openQuestions),
+  ].join("\n\n");
 }
 
-export async function runAnalyze(filePath: string): Promise<void> {
+export async function runCompress(filePath: string): Promise<void> {
   const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey) {
     console.error("Error: OPENROUTER_API_KEY not set");
@@ -47,16 +43,15 @@ export async function runAnalyze(filePath: string): Promise<void> {
   }
 
   const content = fs.readFileSync(resolved, "utf-8");
+  const inputWords = content.split(/\s+/).filter(Boolean).length;
 
   const client = new OpenRouterClient(apiKey);
-  const analyzer = new StructuredAnalyzer(client);
-  analyzer.onCompress = () => {
-    console.log("\nInput large — compressing context before analysis...");
-  };
+  const compressor = new ContextCompressor(client);
 
   try {
-    const result = await analyzer.execute({ content });
-    console.log(formatAnalysis(result));
+    const result = await compressor.execute({ content });
+    console.log("\n" + formatCompressed(result));
+    console.log(`\n  Compressed ${inputWords} words → ${result.tokenEstimate} words (~${Math.round((1 - result.tokenEstimate / inputWords) * 100)}% reduction)\n`);
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
     console.error(`Error: ${message}`);

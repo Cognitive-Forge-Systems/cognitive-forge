@@ -1,0 +1,1137 @@
+# IDEA.md
+
+# Cognitive Forge Core
+
+*A Portable AI Reasoning Engine & Discipline Framework*
+
+---
+
+# 1. Vision
+
+## What Cognitive Forge Is
+
+Cognitive Forge is a **portable, open-source reasoning engine** that exposes a CLI interface for disciplined, structured thinking using LLMs.
+
+It is not:
+
+* a chatbot wrapper
+* a prompt collection
+* a workflow hack
+
+It is:
+
+> A Cognitive Operating Layer for developers, builders, and AI systems.
+
+It enforces structured reasoning, iteration, and output discipline through a modular architecture built on Clean Architecture and Onion Architecture principles.
+
+It is designed to:
+
+* Run locally
+* Integrate with OpenRouter
+* Expose a CLI
+* Be reusable by higher-order tools (e.g., cforge-dev)
+* Become the foundation of future systems like Donna AI
+
+---
+
+# 2. Core Philosophy
+
+## Working Theory
+
+Raw LLM output is stochastic and undisciplined.
+Cognitive Forge introduces:
+
+* Structure
+* Iteration
+* Scoring
+* Compression
+* Critique
+* Taste filtering
+* Knowledge gardening
+
+It transforms:
+
+```
+Prompt → Response
+```
+
+Into:
+
+```
+Intent → Structured Analysis → Output → Critique → Iteration → Scoring → Refined Output
+```
+
+---
+
+## Meta-Level Goal
+
+Cognitive Forge is a **Skill Engine**.
+
+It develops:
+
+* reasoning clarity
+* taste refinement
+* structured thought
+* iterative quality improvement
+* resistance to hallucination and flattery
+
+---
+
+# 3. Architectural Style
+
+## Onion Architecture + Clean Architecture
+
+```
+Outer Layer (CLI / API)
+Application Layer
+Domain Layer
+Infrastructure Layer
+```
+
+### Rules
+
+* Domain must not depend on infrastructure.
+* Infrastructure implements interfaces.
+* Application orchestrates use cases.
+* Outer layer handles IO only.
+* All business logic is testable (TDD-first).
+
+---
+
+# 4. Layer Breakdown
+
+## 4.1 Domain Layer (Pure Logic)
+
+No OpenRouter. No filesystem. No side effects.
+
+### Core Engines
+
+* Reasoning Engine
+* RCCF Framework (Reflect → Critique → Construct → Finalize)
+* Structured Analyzer
+* Harsh Feedback Engine (Anti-Yes-Man Protocol)
+* Taste Curation Engine
+* Master Prompt System
+* Output Iteration Engine
+* Context Compression System
+* Skill Engine
+* Learning Mode Engine
+* Knowledge Gardening Model
+
+### RCCF — Dual Framework
+
+RCCF operates on two complementary levels:
+
+## Level 1 — Prompt Structure (Role, Context, Command, Format)
+
+This is the external prompting discipline.
+
+* **Role** — Who the model is acting as (expertise, perspective, constraints)
+* **Context** — Relevant background, data, files, assumptions
+* **Command** — Clear, unambiguous instruction
+* **Format** — Strict output structure specification
+
+This ensures inputs to the engine are structured and unambiguous.
+
+---
+
+## Level 2 — Reasoning Discipline (Reflect → Critique → Construct → Finalize)
+
+This is the internal reasoning cycle applied after prompt structuring.
+
+1. **Reflect** — Understand intent, constraints, edge cases
+2. **Critique** — Identify weaknesses, risks, blind spots
+3. **Construct** — Build improved, structured solution
+4. **Finalize** — Produce clean, contract-respecting output
+
+---
+
+### How Both Layers Interact
+
+External Discipline (Role/Context/Command/Format)
+→ Internal Discipline (Reflect/Critique/Construct/Finalize)
+→ Scoring & Iteration
+→ Final Output
+
+The first prevents ambiguous prompts.
+The second prevents shallow reasoning.
+
+Together they form the Cognitive Forge reasoning contract.
+
+---
+
+### Structured Analyzer
+
+Forces responses into:
+
+* Intent
+* Constraints
+* Assumptions
+* Risks
+* Options
+* Decision Logic
+* Final Output
+
+---
+
+## 4.2 Application Layer (Use Cases)
+
+Orchestrates domain logic.
+
+### Use Cases
+
+* ExecutePrompt
+* ExecuteStructuredAnalysis
+* ExecuteIteration
+* ExecuteHarshFeedback
+* ScorePrompt
+* RunInteractiveSession
+* CompressContext
+* ApplyTasteFilter
+* RunLearningMode
+* GardenProjectKnowledge
+
+Each use case:
+
+* Receives DTO
+* Invokes domain engines
+* Returns structured result
+
+---
+
+## 4.3 Infrastructure Layer
+
+Implements external systems.
+
+### Components
+
+* LLMClient interface
+* OpenRouterClient implementation
+* Model adapters
+* File system loader
+* Local memory storage
+* Prompt cache
+* Scoring persistence
+
+No business logic here.
+
+Future:
+
+* Multi-model arbitration
+* Ensemble reasoning
+* Automatic model selection
+
+---
+
+## 4.4 Outer Layer (CLI)
+
+Responsibilities:
+
+* Parse arguments
+* Load files
+* Call use cases
+* Format output
+* Manage interactive session loop
+
+Binary: `cforge`
+
+---
+
+# 5. OpenRouter Integration
+
+OpenRouter enables:
+
+* Model abstraction
+* Provider switching
+* Multi-model routing
+* Future orchestration
+
+Architecture rule:
+
+Domain depends only on `LLMClient` interface.
+Infrastructure implements it via OpenRouter.
+
+---
+
+# 6. CLI Design
+
+## Command Surface Philosophy
+
+Commands are intentionally composable and mode-driven rather than fragmented.
+Flags activate reasoning engines, personas, and discipline layers instead of creating separate tools.
+
+---
+
+## Basic Prompt
+
+```
+cforge run "Design a SaaS pricing model"
+```
+
+---
+
+## Structured Mode
+
+```
+cforge analyze idea.md
+```
+
+Applies Structured Analyzer.
+
+---
+
+## Harsh Feedback Mode
+
+```
+cforge critique --harsh pitch.md
+```
+
+Activates Anti-Yes-Man Protocol:
+
+* Blind spots
+* Logical gaps
+* Risk exposure
+* Ego bias detection
+
+---
+
+## Iteration Mode
+
+```
+cforge iterate draft.md
+```
+
+Pipeline:
+
+1. Generate
+2. Critique
+3. Improve
+4. Score
+5. Compare
+6. Output best
+
+---
+
+## Prompt Scoring & Audit
+
+```
+cforge score prompt.txt
+```
+
+Or stricter audit mode:
+
+```
+cforge audit prompt.txt --critic
+```
+
+Scores and evaluates:
+
+* Clarity
+* Constraint definition
+* Outcome specificity
+* Hallucination risk
+* Structural completeness (RCCF compliance)
+
+`audit` is a stricter wrapper around scoring + critique.
+
+---
+
+---
+
+## Interactive Chat Mode
+
+```
+cforge chat
+```
+
+Features:
+
+* Structured reasoning enforcement
+* Context compression
+* Learning mode toggle
+* Harsh mode toggle
+* File injection
+* Persona switching
+
+---
+
+## Learning Command
+
+```
+cforge learn topic --7min
+```
+
+Time-boxed learning mode.
+
+Engine behavior:
+
+* Structured explanation
+* Key principles first
+* Minimal fluff
+* Transferable mental models
+
+---
+
+## Master Prompt System
+
+Create reusable structured prompts:
+
+```
+cforge master create
+```
+
+Stores prompts in versioned template registry.
+
+---
+
+## Project-Based Mode
+
+```
+cforge use donna-ai --task dev
+```
+
+Activates project-scoped knowledge gardening.
+
+* Loads project memory
+* Applies dev-focused reasoning
+* Tracks decisions & assumptions
+
+---
+
+## Context Compression (Folder-Level)
+
+```
+cforge compress project-folder/
+```
+
+Produces structured abstraction:
+
+* Architecture summary
+* Core modules
+* Risks
+* Open questions
+
+---
+
+---
+
+## Passing Files
+
+```
+cforge run --file spec.md --context README.md
+```
+
+Supports automatic compression when context is large.
+
+---
+
+# 7. System Prompts & Persona Modes
+
+System prompts stored in:
+
+```
+/system-prompts/
+```
+
+Modes include:
+
+* Strict CTO Mode
+* Harsh VC Mode
+* Philosopher Mode
+* Devil’s Advocate Mode
+* First Principles Engineer Mode
+
+CLI activation examples:
+
+```
+cforge run idea.md --system harsh-vc
+cforge run spec.md --system strict-cto
+```
+
+Flags can also compose discipline layers:
+
+* `--critic`
+* `--devils-advocate`
+* `--first-principles`
+
+---
+
+## Taste Curation & Output Constraints
+
+Output shaping flags:
+
+* `--grade-level 9`
+* `--max-words 100`
+* `--tone persuasive`
+* `--critic`
+* `--devils-advocate`
+* `--first-principles`
+
+These apply post-generation filtering and re-structuring via Taste Engine.
+
+---
+
+# 8. Core Systems
+
+## 8.1 Harsh Feedback Engine
+
+Prevents:
+
+* Flattery
+* Vague agreement
+* Shallow validation
+
+Forces:
+
+* Counter-arguments
+* Weakness detection
+* Stress testing
+
+---
+
+## 8.2 Taste Curation Engine
+
+Filters output through:
+
+* Clarity metric
+* Density metric
+* Non-generic filter
+* Insight detection
+
+Goal: High signal-to-noise ratio.
+
+---
+
+## 8.3 Master Prompt System
+
+Centralized, versioned prompt templates for:
+
+* Structured analysis
+* Critique
+* Iteration
+* Compression
+* Learning mode
+
+All prompts version-controlled.
+
+---
+
+## 8.4 Output Iteration Engine
+
+Multi-pass generation with scoring and comparison.
+
+---
+
+## 8.5 Context Compression System
+
+Handles:
+
+* Large documents
+* Codebases
+* Long sessions
+
+Techniques:
+
+* Layered summarization
+* Intent extraction
+* Structural mapping
+* Memory abstraction
+
+---
+
+## 8.6 Project-Based Knowledge Gardening
+
+Stores structured insights:
+
+* Decisions
+* Constraints
+* Architecture
+* Assumptions
+* Lessons learned
+
+Command example:
+
+```
+cforge garden sync
+```
+
+---
+
+## 8.7 Learning Mode
+
+When enabled:
+
+* Explains reasoning
+* Highlights assumptions
+* Surfaces cognitive models
+* Identifies transferable skills
+
+---
+
+# 9. Skill Engine
+
+Cognitive Forge develops:
+
+* Critical thinking
+* Structured decomposition
+* Clarity enforcement
+* Iterative refinement
+* Bias detection
+
+It trains thinking, not just text generation.
+
+---
+
+# 10. TDD & Clean Code Principles
+
+* Domain-first implementation
+* Tests before infrastructure
+* Mock LLMClient in tests
+* High domain coverage
+* Contract testing for OpenRouter adapter
+* No hidden side effects
+
+---
+
+# 11. Roadmap
+
+## v0.1 — Minimal Core
+
+* CLI runner
+* OpenRouter integration
+* Structured Analyzer
+* Basic RCCF
+* Harsh mode
+* TDD baseline
+
+## v0.2 — Iteration Engine
+
+* Multi-pass generation
+* Scoring system
+* Output comparison
+* Interactive chat
+
+## v0.3 — Compression & Files
+
+* File loading
+* Context compression
+* Project memory
+
+## v0.4 — Taste & Learning
+
+* Taste engine
+* Learning mode
+* Knowledge gardening
+
+## v1.0 — Stable Core
+
+* Plugin system
+* API exposure
+* SDK extraction
+* Stable prompt contracts
+
+---
+
+# 12. Phased Scope
+
+Phase 1: Minimal Reasoning CLI
+Phase 2: Iterative Intelligence
+Phase 3: Memory & Compression
+Phase 4: Skill Engine
+Phase 5: API + SDK
+
+Avoid premature complexity.
+
+---
+
+# 13. Packaging & Distribution
+
+Initial binary:
+
+```
+cforge
+```
+
+Future NPM scoped package (if ecosystem evolves that direction):
+
+```
+@cognitive-forge/cli
+```
+
+This aligns with long-term SDK and plugin architecture.
+
+---
+
+# 14. Long-Term Direction
+
+Cognitive Forge becomes:
+
+* Reusable SDK
+* API layer
+* Foundation for cforge-dev
+* Infrastructure backbone for Donna AI
+
+The Open-Core/Infrastructure-as-Open-Source Strategy:
+
+Cognitive Forge = The foundational, open-source cognitive infrastructure. Open to the community to drive adoption, establish reasoning standards, and build trust.
+Donna AI = The closed-source, proprietary application layer. A commercial SaaS product that monetizes the cognitive infrastructure through advanced personal and business assistant workflows.
+
+## 14.1 cforge-dev: The Autonomous SDLC Guardian
+While Cognitive Forge provides the underlying reasoning infrastructure, `cforge-dev` will serve as the application layer that enforces software development best practices.
+
+Rather than just generating code, `cforge-dev` will utilize the engine to act as a continuous repository auditor:
+* **Continuous Governance:** Automatically auditing, generating, and updating foundational repository files (`README.md`, `CONTRIBUTING.md`, `CHANGELOG.md`, `LICENSE`).
+* **Governance Contracts:** Best practices (like Conventional Commits, Git flow, and folder structures) are defined in Markdown-based "Contracts" that the reasoning engine evaluates the current workspace against.
+* **Proactive Maintenance:** Identifying "documentation rot" (e.g., when a new feature is committed but the README is not updated) and automatically proposing the fix via the RCCF loop.
+
+---
+
+# 15. Non-Goals (Initial Versions)
+
+* Web UI
+* Multi-agent orchestration
+* Autonomous agents
+* Dev automation (belongs to cforge-dev)
+* Vector database integration
+
+---
+
+# 16. Identity Statement
+
+Cognitive Forge is:
+
+> A disciplined reasoning engine for serious builders.
+
+It enforces structure where LLMs are stochastic.
+
+It creates clarity where prompts are chaotic.
+
+It builds thinking discipline — not just responses.
+# IDEA.md
+
+# Cognitive Forge Dev (cforge-dev)
+
+*A Disciplined AI‑SDLC Orchestrator*
+
+---
+
+# 1. Vision
+
+Cognitive Forge Dev (cforge-dev) is a CLI-based SDLC orchestrator that enforces architectural discipline when building software with AI.
+
+It exists to solve a core problem:
+
+> AI can generate code quickly — but without structure, it produces architectural debt faster than humans can detect it.
+
+cforge-dev is the execution layer built on top of **Cognitive Forge (cforge)**.
+
+* `cforge` = Reasoning Engine
+* `cforge-dev` = AI SDLC Orchestrator
+
+Together they form a disciplined AI engineering stack.
+
+---
+
+# 2. First Principles: The Core Problems in AI-Assisted Development
+
+## Problem 1 — Context Collapse
+
+AI sessions accumulate noisy context and drift from architectural intent.
+
+## Problem 2 — Architecture Regret
+
+Vibe coding leads to:
+
+* unclear boundaries
+* implicit coupling
+* missing contracts
+* no domain model
+
+## Problem 3 — No Process Enforcement
+
+AI does not naturally follow:
+
+* structured SDLC
+* issue boundaries
+* test-first discipline
+* clean branching strategy
+
+## Problem 4 — Uncontrolled Iteration
+
+Multiple edits in a single session blur responsibility and break traceability.
+
+## Problem 5 — Missing Source of Truth
+
+If planning lives in chat instead of GitHub, alignment collapses.
+
+---
+
+# 3. What cforge-dev Solves
+
+cforge-dev enforces:
+
+* GitHub as single source of truth
+* Architecture-first development
+* One issue = one isolated execution session
+* Test-before-implementation
+* Structured sprint cycles
+* Release discipline
+* Continuous Repository Governance (preventing documentation and architecture rot)
+
+It transforms AI coding from improvisation into process-driven engineering.
+
+---
+
+# 4. SDLC Doctrine
+
+Non-negotiable rules:
+
+1. GitHub is the source of truth.
+2. No coding without an Architecture Issue.
+3. One issue per clean AI execution session.
+4. Tests before implementation.
+5. No direct edits to main branch.
+6. Every sprint ends with a release tag.
+
+This doctrine prevents entropy.
+
+---
+
+# 5. Strategic Architecture
+
+Layered system:
+
+```
+cforge (reasoning core)
+↑
+cforge-dev (SDLC orchestration)
+↑
+GitHub (issues, PRs, releases)
+↑
+Project Repository
+```
+
+cforge-dev uses cforge internally for:
+
+* structured analysis
+* persona-driven planning
+* critique & refinement
+* architectural enforcement
+
+---
+
+# 6. GitHub-Centric Workflow Model
+
+GitHub entities define structure:
+
+* PRD (Product Requirements Document)
+* Feature Issues
+* Task Issues
+* Architecture Issues
+* Pull Requests
+* Release Tags
+
+All planning artifacts live in GitHub.
+No planning exists only in chat.
+
+---
+
+# 7. Persona-Driven Planning
+
+Planning uses structured personas executed via cforge.
+
+## Architect Persona
+
+* Defines domain model
+* Sets boundaries
+* Designs folder structure
+* Defines interfaces
+
+## PM Persona
+
+* Translates PRD into Features
+* Defines acceptance criteria
+* Defines milestones
+
+## Scrum Persona
+
+* Breaks features into tasks
+* Plans sprint
+* Orders execution
+
+Personas operate through RCCF reasoning discipline.
+
+---
+
+# 8. Execution Isolation Model
+
+Core Principle:
+
+> Every GitHub Issue is executed in a fresh, isolated AI context.
+
+Isolation guarantees:
+
+* No context drift
+* Clear responsibility
+* Clean reasoning boundary
+* Traceable commit history
+
+Execution session lifecycle:
+
+1. Fetch issue
+2. Load minimal required context
+3. Inject system prompts
+4. Run cforge reasoning
+5. Generate tests
+6. Generate implementation
+7. Run tests
+8. Commit changes
+9. Push branch
+10. Open PR
+
+Then session terminates.
+
+---
+
+# 9. Orchestration Engine
+
+cforge-dev acts as lightweight orchestrator.
+
+Responsibilities:
+
+* Pull issues via GitHub CLI
+* Prepare execution environment
+* Spawn AI execution process
+* Inject strict system prompts
+* Validate outputs
+* Run test suite
+* Commit + push
+* Close issue when merged
+
+No long-lived agent memory.
+No uncontrolled iteration loops.
+
+---
+
+# 10. Clean Architecture for cforge-dev
+
+```
+Outer Layer (CLI)
+Application Layer (Use Cases)
+Domain Layer (SDLC rules & orchestration logic)
+Infrastructure Layer (GitHub CLI, filesystem, shell, test runner)
+```
+
+Domain contains:
+
+* SDLC doctrine enforcement
+* Execution isolation rules
+* Persona selection logic
+* Issue validation rules
+* Sprint cycle logic
+
+Infrastructure implements:
+
+* GitHub client adapter
+* Test runner adapter
+* Git adapter
+* Shell command adapter
+
+Domain never depends on GitHub implementation.
+
+---
+
+# 11. CLI Command Surface
+
+Binary: `cforge-dev`
+
+## Plan Sprint
+
+```
+cforge-dev plan sprint
+```
+
+* Reads PRD
+* Generates feature issues
+* Orders tasks
+* Creates sprint milestone
+
+---
+
+## Implement
+
+```
+cforge-dev implement 123
+```
+
+Where 123 = GitHub Issue ID
+
+Under the hood:
+
+* Create feature branch
+* Fetch issue details
+* Load architecture context
+* Spawn isolated AI session
+* Generate tests first
+* Generate implementation
+* Run tests
+* Commit changes
+* Push branch
+* Open PR
+
+---
+
+## Verify
+
+```
+cforge-dev verify 123
+```
+
+* Re-run tests
+* Validate acceptance criteria
+* Apply critique mode
+
+---
+
+## Release
+
+```
+cforge-dev release
+```
+
+* Ensure sprint issues closed
+* Bump version
+* Create tag
+* Generate changelog
+
+---
+
+## Audit (Continuous Governance)
+
+```
+cforge-dev audit
+```
+Acts as the autonomous SDLC Guardian:
+
+* Scans the workspace against markdown-based "Governance Contracts" (e.g., repo-standard.md).
+* Detects documentation rot (e.g., features merged without updating the README.md or CHANGELOG.md).
+* Checks for compliance with architectural boundaries and Conventional Commits.
+* Uses the underlying cforge reasoning engine to automatically propose and commit fixes.
+
+# 12. Context Discipline Engine
+
+Context is constructed intentionally:
+
+Included:
+
+* Relevant architecture files
+* Issue description
+* Acceptance criteria
+* Related interfaces
+
+Excluded:
+
+* Entire codebase dump
+* Previous unrelated sessions
+
+Context compression via cforge ensures minimal, focused injection.
+
+---
+
+# 13. Governance Contracts & Continuous Auditing
+
+cforge-dev doesn't rely on hardcoded rules for repository health. Instead, it relies on **Governance Contracts**—simple markdown files stored in a `/contracts/` directory.
+
+These contracts define:
+* Folder structures
+* Required documentation (README, CONTRIBUTING, LICENSE)
+* Commit formatting (Conventional Commits)
+* Code style constraints
+
+When `cforge-dev audit` is run (or triggered in a CI/CD pipeline), it loads these contracts, inspects the filesystem and git history, and utilizes the `cforge` reasoning engine to critique discrepancies and generate the missing compliance artifacts.
+
+---
+
+# 14. AI Control Model
+
+AI is not autonomous.
+AI operates within strict guardrails:
+
+* System prompts enforce SDLC doctrine
+* Persona determines reasoning mode
+* Tests must precede implementation
+* PR required before merge
+
+Human remains final reviewer.
+
+---
+
+# 15. Phased Development Roadmap
+
+## Phase 1 — Foundation
+
+* GitHub integration
+* Issue execution flow
+* Test-first enforcement
+* Basic persona prompts
+* Branch + PR automation
+
+## Phase 2 — Context Discipline
+
+* Context isolation logic
+* Context compression
+* Architecture validation
+* Strict doctrine enforcement
+
+## Phase 3 — Orchestrator CLI
+
+* plan sprint
+* implement
+* verify
+* release
+* structured logging
+
+## Phase 4 — Advanced Orchestration
+
+* Parallel execution (isolated sessions)
+* Dependency graph awareness
+* Automated risk detection
+
+---
+
+# 16. Parallel Execution (Future)
+
+Multiple issues executed concurrently:
+
+* Separate branches
+* Separate AI contexts
+* Shared architecture constraints
+
+Requires dependency awareness to prevent conflicts.
+
+---
+
+# 17. Preventing Architectural Regret
+
+cforge-dev prevents:
+
+* spontaneous file edits
+* undocumented decisions
+* hidden coupling
+* skipping test coverage
+
+It forces explicit architecture before velocity.
+
+---
+
+# 18. Identity Statement
+
+Cognitive Forge Dev is:
+
+> A disciplined AI-SDLC workflow CLI that prevents architectural regret while enabling high-velocity AI-assisted development.
+
+It structures the AI.
+It controls the process.
+It protects the architecture.
+
+Built on top of Cognitive Forge.

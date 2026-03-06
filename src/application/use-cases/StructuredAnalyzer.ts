@@ -1,8 +1,10 @@
 import { LLMClient } from "../../domain/interfaces/LLMClient";
 import { StructuredAnalysis } from "../../domain/models/StructuredAnalysis";
+import { ContextCompressor } from "./ContextCompressor";
 
 const DEFAULT_MODEL = "openai/gpt-4o";
 const DEFAULT_MAX_TOKENS = 1500;
+const AUTO_COMPRESS_THRESHOLD = 2000;
 
 const SYSTEM_PROMPT = `You are a structured analysis engine. You MUST respond with ONLY a valid JSON object matching this exact shape — no prose, no markdown, no explanation:
 
@@ -36,17 +38,32 @@ export interface AnalyzeInput {
 
 export class StructuredAnalyzer {
   private readonly llm: LLMClient;
+  private readonly compressor: ContextCompressor;
+  public onCompress?: () => void;
 
   constructor(llm: LLMClient) {
     this.llm = llm;
+    this.compressor = new ContextCompressor(llm);
   }
 
   async execute(input: AnalyzeInput): Promise<StructuredAnalysis> {
+    let content = input.content;
+
+    const wordCount = content.split(/\s+/).filter(Boolean).length;
+    if (wordCount > AUTO_COMPRESS_THRESHOLD) {
+      this.onCompress?.();
+      const compressed = await this.compressor.execute({
+        content,
+        model: input.model,
+      });
+      content = compressed.summary;
+    }
+
     const response = await this.llm.complete({
       model: input.model ?? DEFAULT_MODEL,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
-        { role: "user", content: input.content },
+        { role: "user", content },
       ],
       temperature: 0.3,
       maxTokens: input.maxTokens ?? DEFAULT_MAX_TOKENS,

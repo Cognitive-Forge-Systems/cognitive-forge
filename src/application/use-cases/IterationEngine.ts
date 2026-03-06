@@ -30,6 +30,10 @@ export class IterationEngine {
   private readonly llm: LLMClient;
   private readonly analyzer: StructuredAnalyzer;
 
+  public set onCompress(callback: (() => void) | undefined) {
+    this.analyzer.onCompress = callback;
+  }
+
   constructor(llm: LLMClient) {
     this.llm = llm;
     this.analyzer = new StructuredAnalyzer(llm);

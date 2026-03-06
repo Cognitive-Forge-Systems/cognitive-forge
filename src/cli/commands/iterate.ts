@@ -64,6 +64,9 @@ export async function runIterate(filePath: string): Promise<void> {
 
   const client = new OpenRouterClient(apiKey);
   const engine = new IterationEngine(client);
+  engine.onCompress = () => {
+    console.log("\nInput large — compressing context before analysis...");
+  };
 
   try {
     console.log("\nRunning round 1...");
