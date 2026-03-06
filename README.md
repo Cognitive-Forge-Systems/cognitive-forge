@@ -40,12 +40,20 @@ Harsh feedback engine — no flattery, no mercy. Produces counter-arguments, log
 cforge critique pitch.md
 ```
 
+### `cforge chat`
+
+Interactive reasoning session with persistent context. Supports session commands: `/harsh`, `/iterate`, `/compress`, `/inject <file>`, `/model <name>`, `/status`, `/clear`, `/exit`. Harsh mode formats responses with structured critique output.
+
+```
+cforge chat
+```
+
 ## Architecture
 
 Clean/Onion Architecture — 4 layers:
 
 - **Domain** — Pure logic, models, interfaces. Zero external dependencies.
-- **Application** — Use cases (StructuredAnalyzer, IterationEngine, ContextCompressor, HarshFeedbackEngine).
+- **Application** — Use cases (StructuredAnalyzer, IterationEngine, ContextCompressor, HarshFeedbackEngine, ChatSession).
 - **Infrastructure** — OpenRouterClient (implements LLMClient interface via native fetch).
 - **CLI** — Argument parsing and output formatting. No business logic.
 
@@ -70,7 +78,7 @@ node dist/cli/index.js analyze <file>
 - v0.2 ✅ — Iteration Engine (RCCF loop)
 - v0.3 ✅ — Context Compression
 - v0.4 ✅ — Harsh Feedback Engine + `cforge critique`
-- v0.5 — Taste Curation + Learning Mode
+- v0.5 ✅ — Interactive Chat Mode + `cforge chat`
 - v0.6 — Knowledge Gardening
 - v1.0 — Plugin system + API + SDK
 

@@ -4,8 +4,9 @@ import { runAnalyze } from "./commands/analyze";
 import { runIterate } from "./commands/iterate";
 import { runCompress } from "./commands/compress";
 import { runCritique } from "./commands/critique";
+import { runChat } from "./commands/chat";
 
-const USAGE = "Usage: cforge <command> <file>\n\nCommands:\n  analyze    Structured analysis of a file\n  iterate    Analyze → Critique → Refine\n  compress   Compress large content into structured abstraction\n  critique   Harsh feedback — no flattery, no mercy";
+const USAGE = "Usage: cforge <command> [file]\n\nCommands:\n  analyze <file>   Structured analysis of a file\n  iterate <file>   Analyze → Critique → Refine\n  compress <file>  Compress large content into structured abstraction\n  critique <file>  Harsh feedback — no flattery, no mercy\n  chat             Interactive reasoning session";
 
 async function main(): Promise<void> {
   const [command, ...args] = process.argv.slice(2);
@@ -50,6 +51,10 @@ async function main(): Promise<void> {
         process.exit(1);
       }
       await runCritique(file);
+      break;
+    }
+    case "chat": {
+      await runChat();
       break;
     }
     default:
