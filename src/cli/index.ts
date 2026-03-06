@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
 import { runAnalyze } from "./commands/analyze";
+import { runIterate } from "./commands/iterate";
 
-const USAGE = "Usage: cforge analyze <file>";
+const USAGE = "Usage: cforge <command> <file>\n\nCommands:\n  analyze   Structured analysis of a file\n  iterate   Analyze → Critique → Refine";
 
 async function main(): Promise<void> {
   const [command, ...args] = process.argv.slice(2);
@@ -20,6 +21,15 @@ async function main(): Promise<void> {
         process.exit(1);
       }
       await runAnalyze(file);
+      break;
+    }
+    case "iterate": {
+      const file = args[0];
+      if (!file) {
+        console.error("Error: No file provided.\n" + USAGE);
+        process.exit(1);
+      }
+      await runIterate(file);
       break;
     }
     default:
